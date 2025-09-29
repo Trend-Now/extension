@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'pretendard';
+  src: url('/src/assets/fonts/PretendardVariable.woff2') format('woff2');
+}
+
+#floating-button {
+  position: fixed;
+  right: 12px;
+  top: 80px;
+  padding: 8px;
+  border-radius: 40px;
+  border: 1px solid #157eff;
+  background: #00000004;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2147483647;
+  user-select: none;
+}
+
+#floating-button-text {
+  color: #157eff;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(5px);
+  transition: all 0.3s ease;
+}
+
+#floating-button:hover #floating-button-text {
+  max-width: 200px;
+  opacity: 1;
+  transform: translateX(0);
+  padding-left: 4px;
+}
