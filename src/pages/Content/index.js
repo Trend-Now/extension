@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import FloatingButton from './components/Floatingbutton';
+import Root from './components/Root';
 
 function inject() {
   // 고유 컨테이너 생성
@@ -21,7 +21,7 @@ function inject() {
 
   // React 마운트
   const root = createRoot(container);
-  root.render(<FloatingButton />);
+  root.render(<Root />);
 }
 
 if (document.readyState === 'loading') {

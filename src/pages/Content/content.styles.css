@@ -3,6 +3,10 @@
   src: url('/src/assets/fonts/PretendardVariable.woff2') format('woff2');
 }
 
+/* 
+ * MARK: FloatingButton
+ */
+/* #region */
 #floating-button {
   position: fixed;
   right: 12px;
@@ -38,3 +42,81 @@
   transform: translateX(0);
   padding-left: 4px;
 }
+/* #endregion */
+
+/* 
+ * MARK: HotBoardsContainer
+ */
+/* #region */
+#hotboards-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 80px;
+  right: 0;
+  width: 340px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: #222323;
+  z-index: 2147483647;
+}
+
+#hotboards-header {
+  display: flex;
+  padding: 24px 16px 2px 20px;
+  justify-content: space-between;
+}
+
+#hotboards-header-logo {
+  display: flex;
+  column-gap: 8px;
+}
+
+#hotboards-close {
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+}
+
+#hotboards-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  padding: 20px 16px;
+}
+/* #endregion */
+
+/* 
+ * MARK: DateDivider
+ */
+/* #region */
+#date-divider-container {
+  display: flex;
+  column-gap: 4px;
+  align-items: center;
+}
+
+#date-divider-date {
+  color: black;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 4px 8px;
+  background-color: white;
+}
+
+#date-divider-line {
+  flex: 1;
+  background-color: #696a6d;
+  height: 2px;
+  border: 0;
+}
+
+#date-divider-square {
+  width: 10px;
+  height: 10px;
+  background-color: #696a6d;
+  border-radius: 2px;
+}
+/* #endregion */
