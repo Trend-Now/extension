@@ -4,6 +4,7 @@ import Trendnow20White from '../icons/Trendnow20White';
 import { useHotBoards } from '../context';
 import CloseButton from '../button/CloseButton';
 import DateDivider from '../divider/DateDivider';
+import HotBoardsList from './HotBoardsList';
 
 export default function HotBoardsContainer() {
   const { isOpen } = useHotBoards();
@@ -11,16 +12,17 @@ export default function HotBoardsContainer() {
   if (!isOpen) return null;
 
   return (
-    <div id="hotboards-container">
-      <div id="hotboards-header">
-        <span id="hotboards-header-logo">
+    <div className="hotboards">
+      <div className="hotboards__header">
+        <span className="hotboards__logo">
           <TN24White />
           <Trendnow20White />
         </span>
         <CloseButton />
       </div>
-      <div id="hotboards-content">
+      <div className="hotboards__content">
         <DateDivider />
+        <HotBoardsList />
       </div>
     </div>
   );

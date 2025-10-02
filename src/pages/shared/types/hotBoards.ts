@@ -1,0 +1,16 @@
+export interface HotBoardResponse {
+  totalPageCount: number;
+  totalBoardCount: number;
+  boardInfoDtos: HotBoardList[];
+}
+
+export interface HotBoardList {
+  boardId: number;
+  boardName: string;
+  postCount: number;
+  viewCount: number;
+  boardLiveTime: number;
+  score: number;
+  createdAt: string;
+  updatedAt: string;
+}

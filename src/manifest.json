@@ -21,8 +21,14 @@
   "devtools_page": "devtools.html",
   "web_accessible_resources": [
     {
-      "resources": ["content.styles.css", "icon-128.png", "icon-34.png"],
+      "resources": [
+        "content.styles.css",
+        "icon-128.png",
+        "icon-34.png",
+        "aiStar.gif"
+      ],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+  "host_permissions": ["https://api.trendnow.me/*"]
 }

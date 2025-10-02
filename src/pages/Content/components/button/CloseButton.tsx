@@ -6,7 +6,7 @@ export default function CloseButton() {
   const { setIsOpen } = useHotBoards();
 
   return (
-    <button id="hotboards-close" onClick={() => setIsOpen?.(false)}>
+    <button className="hotboards__close" onClick={() => setIsOpen?.(false)}>
       <Close />
     </button>
   );
