@@ -1,13 +1,15 @@
 import React from 'react';
 import HotBoardsRow from './HotBoardsRow';
-import { useHotBoardList } from '../../../shared/message/hotBoards';
+import { HotBoardList } from '../../../shared/types/hotBoards';
 
-export default function HotBoardsList() {
-  const { data } = useHotBoardList(1, 5);
+interface HotBoardsListProps {
+  data: HotBoardList[];
+}
 
+export default function HotBoardsList({ data }: HotBoardsListProps) {
   return (
     <div className="hotboards__list">
-      {data?.boardInfoDtos.map((board) => (
+      {data.map((board) => (
         <HotBoardsRow
           key={board.boardId}
           boardId={board.boardId}

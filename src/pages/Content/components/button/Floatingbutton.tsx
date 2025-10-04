@@ -1,6 +1,6 @@
 import React from 'react';
-import TN24Blue from '../icons/TN24Blue';
 import { useHotBoards } from '../context';
+import TN24White from '../icons/TN24White';
 
 const FloatingButton: React.FC = () => {
   const { setIsOpen } = useHotBoards();
@@ -17,7 +17,7 @@ const FloatingButton: React.FC = () => {
       tabIndex={0}
       aria-label="Extension floating button"
     >
-      <TN24Blue />
+      <TN24White size={28} />
       <span className="floating-button__text">실시간 인기 검색어</span>
     </div>
   );

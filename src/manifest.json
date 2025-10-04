@@ -25,7 +25,8 @@
         "content.styles.css",
         "icon-128.png",
         "icon-34.png",
-        "aiStar.gif"
+        "aiStar.gif",
+        "PretendardVariable.woff2"
       ],
       "matches": ["<all_urls>"]
     }

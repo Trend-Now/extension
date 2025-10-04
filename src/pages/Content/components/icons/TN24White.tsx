@@ -1,8 +1,12 @@
-export default function TN24White() {
+interface TN24WhiteProps {
+  size?: number;
+}
+
+export default function TN24White({ size = 24 }: TN24WhiteProps) {
   return (
     <svg
-      width="24"
-      height="24"
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

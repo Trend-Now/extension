@@ -5,9 +5,12 @@ import { useHotBoards } from '../context';
 import CloseButton from '../button/CloseButton';
 import DateDivider from '../divider/DateDivider';
 import HotBoardsList from './HotBoardsList';
+import HotBoardsFooter from './HotBoardsFooter';
+import { useHotBoardList } from '../../../shared/message/hotBoards';
 
 export default function HotBoardsContainer() {
   const { isOpen } = useHotBoards();
+  const { data } = useHotBoardList(1, 5);
 
   if (!isOpen) return null;
 
@@ -22,7 +25,8 @@ export default function HotBoardsContainer() {
       </div>
       <div className="hotboards__content">
         <DateDivider />
-        <HotBoardsList />
+        <HotBoardsList data={data?.boardInfoDtos ?? []} />
+        <HotBoardsFooter />
       </div>
     </div>
   );

@@ -1,6 +1,14 @@
 @font-face {
-  font-family: 'pretendard';
-  src: url('/src/assets/fonts/PretendardVariable.woff2') format('woff2');
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('./PretendardVariable.woff2') format('woff2-variations');
+}
+
+*,
+body {
+  font-family: 'Pretendard Variable';
 }
 
 /* 
@@ -9,12 +17,12 @@
 /* #region */
 .floating-button {
   position: fixed;
-  right: 12px;
+  right: 0;
   top: 80px;
-  padding: 8px;
-  border-radius: 40px;
-  border: 1px solid #157eff;
-  background: #00000004;
+  padding: 10px;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  background: #222323;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +32,7 @@
 }
 
 .floating-button__text {
-  color: #157eff;
+  color: white;
   font-size: 12px;
   font-weight: 600;
   display: inline-block;
@@ -91,7 +99,12 @@
   row-gap: 12px;
   padding-left: 4px;
 }
+/* #endregion */
 
+/* 
+ * MARK: HotBoardsRow
+ */
+/* #region */
 .hotboards-row {
   display: flex;
   flex-direction: column;
@@ -148,6 +161,54 @@
   font-size: 12px;
   line-height: 18px;
   font-weight: 400;
+}
+/* #endregion */
+
+/* 
+ * MARK: HotBoardsFooter
+ */
+/* #region */
+.hotboards-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hotboards-footer__info-box {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+
+.hotboards-footer__info-text {
+  color: #ffffff28;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+.hotboards-footer__page-box {
+  display: flex;
+  align-items: center;
+  column-gap: 2px;
+}
+
+.hotboards-footer__page-text {
+  color: #ffffff28;
+  font-size: 13px;
+  line-height: 150%;
+  font-weight: 500;
+}
+
+.hotboards-footer__page-arrows {
+  display: flex;
+  align-items: center;
+}
+
+.hotboards-footer__page-button {
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
 }
 /* #endregion */
 
