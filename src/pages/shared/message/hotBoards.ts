@@ -3,7 +3,7 @@ import { HotBoardInfoResponse, HotBoardResponse } from '../types/hotBoards';
 
 export function useHotBoardList(page?: number, size?: number) {
   return useQuery<HotBoardResponse>({
-    queryKey: ['hotBoards'],
+    queryKey: ['hotBoards', page, size],
     queryFn: () =>
       new Promise((resolve, reject) => {
         chrome.runtime.sendMessage(

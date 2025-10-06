@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TN24White from '../icons/TN24White';
 import Trendnow20White from '../icons/Trendnow20White';
 import { useHotBoards } from '../context';
@@ -9,8 +9,10 @@ import HotBoardsFooter from './HotBoardsFooter';
 import { useHotBoardList } from '../../../shared/message/hotBoards';
 
 export default function HotBoardsContainer() {
+  const [currentPage, setCurrentPage] = useState(1);
+
   const { isOpen } = useHotBoards();
-  const { data } = useHotBoardList(1, 5);
+  const { data } = useHotBoardList(currentPage, 5);
 
   if (!isOpen) return null;
 
@@ -26,7 +28,11 @@ export default function HotBoardsContainer() {
       <div className="hotboards__content">
         <DateDivider />
         <HotBoardsList data={data?.boardInfoDtos ?? []} />
-        <HotBoardsFooter />
+        <HotBoardsFooter
+          setPage={setCurrentPage}
+          currentPage={currentPage}
+          totalPages={data?.totalPageCount ?? 1}
+        />
       </div>
     </div>
   );
