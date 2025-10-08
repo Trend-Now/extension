@@ -9,7 +9,7 @@ export class SSE {
     const clientId = getSHA256(String(new Date().getMilliseconds()));
 
     const eventSource = new EventSource(
-      `${process.env.NEXT_PUBLIC_REST_API_URL}/api/v1/subscribe?clientId=${clientId}`
+      `https://api.trendnow.me/api/v1/subscribe?clientId=${clientId}`
     );
 
     eventSource.onopen = () => {

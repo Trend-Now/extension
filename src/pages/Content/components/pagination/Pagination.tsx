@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ChevronLeft from '../icons/ChevronLeft';
 import ChevronRight from '../icons/ChevronRight';
 
@@ -13,6 +13,10 @@ export default function Pagination({
   totalPages,
   setPage,
 }: PaginationProps) {
+  useEffect(() => {
+    if (currentPage > totalPages) setPage(totalPages);
+  }, [currentPage, totalPages]);
+
   const handleNext = () => {
     if (currentPage < totalPages) setPage(currentPage + 1);
   };
