@@ -33,7 +33,7 @@ const Timer = ({ initialSeconds }: CountdownTimerProps) => {
     const timerId = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
-          queryClient.invalidateQueries({ queryKey: ['hotBoardList'] });
+          queryClient.invalidateQueries({ queryKey: ['hotBoards'] });
           return 0;
         }
         return prev - 1;

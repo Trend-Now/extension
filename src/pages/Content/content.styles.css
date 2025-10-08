@@ -126,6 +126,9 @@ body {
   font-size: 14px;
   font-weight: 500;
   line-height: 150%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 
 .hotboards-row__ai-button {
@@ -146,7 +149,7 @@ body {
   font-size: 10px;
   font-weight: 400;
   line-height: 150%;
-  text-wrap: none;
+  white-space: nowrap;
 }
 
 .hotboards-row__ai-detail-box {
@@ -182,7 +185,7 @@ body {
   font-size: 10px;
   font-weight: 400;
   line-height: 150%;
-  text-wrap: none;
+  white-space: nowrap;
 }
 
 .hotboards-row__ai-detail-restore {
@@ -353,5 +356,28 @@ body {
 
 .timer__blue {
   color: #157eff;
+}
+/* #endregion */
+
+/* 
+ * MARK: Skeleton
+ */
+/* #region */
+.skeleton {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #3f4042 25%, #46474a 50%, #3f4042 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 /* #endregion */

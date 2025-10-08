@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TN24White from '../icons/TN24White';
 import Trendnow20White from '../icons/Trendnow20White';
 import { useHotBoards } from '../context';
@@ -7,12 +7,27 @@ import DateDivider from '../divider/DateDivider';
 import HotBoardsList from './HotBoardsList';
 import HotBoardsFooter from './HotBoardsFooter';
 import { useHotBoardList } from '../../../shared/message/hotBoards';
+import SkeletonList from './SkeletonList';
+import { SSE } from '../../../shared/sse/sse';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function HotBoardsContainer() {
+  const queryClient = useQueryClient();
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const { isOpen } = useHotBoards();
   const { data } = useHotBoardList(currentPage, 5);
+
+  useEffect(() => {
+    const sseInstance = SSE.getInstance();
+
+    const { eventSource } = sseInstance.getEventSource();
+
+    eventSource.addEventListener('realtimeBoardTimeUp', () => {
+      queryClient.invalidateQueries({ queryKey: ['hotBoards'] });
+    });
+  }, []);
 
   if (!isOpen) return null;
 
@@ -27,7 +42,11 @@ export default function HotBoardsContainer() {
       </div>
       <div className="hotboards__content">
         <DateDivider />
-        <HotBoardsList data={data?.boardInfoDtos ?? []} />
+        {data ? (
+          <HotBoardsList data={data.boardInfoDtos ?? []} />
+        ) : (
+          <SkeletonList />
+        )}
         <HotBoardsFooter
           setPage={setCurrentPage}
           currentPage={currentPage}

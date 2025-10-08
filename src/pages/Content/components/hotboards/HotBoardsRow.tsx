@@ -25,6 +25,9 @@ export default function HotBoardsRow({
     enabled: aiSummaryVisible,
   });
 
+  // AI 요약이 보이는 상태이면서, 데이터가 존재할 때만 요약문을 보여줌
+  const showAiSummary = aiSummaryVisible && data;
+
   return (
     <div className="hotboards-row">
       <div className="hotboards-row__header">
@@ -52,21 +55,34 @@ export default function HotBoardsRow({
           </button>
         )}
       </div>
-      {aiSummaryVisible && data ? (
-        <div className="hotboards-row__ai-summary">{data.summary}</div>
-      ) : (
-        <div className="hotboards-row__footer">
-          <span className="hotboards-row__stats">
-            <span className="hotboards-row__stats-count">
-              게시글: {postCount}
-            </span>
-            <span className="hotboards-row__stats-count">
-              조회수: {viewCount}
-            </span>
+      {/**
+       * 중요)
+       * AI 요약이 열려있는 상태에서도 타이머를 유지하기 위해서
+       * AI 요약이 열려있는 경우 타이머를 출력하지 않는 것이 아닌
+       * 타이머 영역을 숨기는 방식으로 처리
+       */}
+      {/* AI 요약 */}
+      <div
+        className="hotboards-row__ai-summary"
+        style={!showAiSummary ? { display: 'none' } : undefined}
+      >
+        {data?.summary}
+      </div>
+      {/* 게시글 & 조회수 & 타이머 */}
+      <div
+        className="hotboards-row__footer"
+        style={showAiSummary ? { display: 'none' } : undefined}
+      >
+        <span className="hotboards-row__stats">
+          <span className="hotboards-row__stats-count">
+            게시글: {postCount}
           </span>
-          <Timer initialSeconds={boardLiveTime} />
-        </div>
-      )}
+          <span className="hotboards-row__stats-count">
+            조회수: {viewCount}
+          </span>
+        </span>
+        <Timer initialSeconds={boardLiveTime} />
+      </div>
     </div>
   );
 }
