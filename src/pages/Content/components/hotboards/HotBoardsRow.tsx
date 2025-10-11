@@ -48,11 +48,25 @@ export default function HotBoardsRow({
         <span className="hotboards-row__rank">{rank}</span>
       )}
       <div className="hotboards-row__header">
-        <span className="hotboards-row__title">{boardName}</span>
+        <a
+          href={`https://www.trendnow.me/hotboard/${boardId}`}
+          className="hotboards-row__title"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {boardName}
+        </a>
         {aiSummaryVisible && data ? (
           <span className="hotboards-row__ai-detail-box">
             <button className="hotboards-row__ai-detail-button">
-              <span className="hotboards-row__ai-detail-text">자세히보기</span>
+              <a
+                href={`https://www.trendnow.me/hotboard/${boardId}`}
+                className="hotboards-row__ai-detail-text"
+                target="_blank"
+                rel="noreferrer"
+              >
+                자세히보기
+              </a>
               <ChevronSmallRight />
             </button>
             <button
