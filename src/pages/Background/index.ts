@@ -18,10 +18,7 @@ chrome.runtime.onMessage.addListener(
           params: { page: message.page, size: message.size },
         })
         .then((res) => sendResponse({ success: true, data: res.data }))
-        .catch((err) => {
-          console.error('GET_HOTBOARD_LIST', err);
-          sendResponse({ success: false, error: err.message });
-        });
+        .catch((err) => sendResponse({ success: false, error: err.message }));
 
       return true; // async 응답 허용
     }

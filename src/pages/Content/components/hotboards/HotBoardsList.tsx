@@ -20,6 +20,7 @@ export default function HotBoardsList({ data }: HotBoardsListProps) {
           postCount={board.postCount}
           viewCount={board.viewCount}
           boardLiveTime={board.boardLiveTime}
+          rank={board.score}
         />
       ))}
     </div>

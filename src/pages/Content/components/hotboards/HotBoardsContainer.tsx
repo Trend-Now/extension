@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TN24White from '../icons/TN24White';
 import Trendnow20White from '../icons/Trendnow20White';
 import { useHotBoards } from '../context';
@@ -8,26 +8,23 @@ import HotBoardsList from './HotBoardsList';
 import HotBoardsFooter from './HotBoardsFooter';
 import { useHotBoardList } from '../../../shared/message/hotBoards';
 import SkeletonList from './SkeletonList';
-import { SSE } from '../../../shared/sse/sse';
-import { useQueryClient } from '@tanstack/react-query';
+import SkeletonFooter from './SkeletonFooter';
 
 export default function HotBoardsContainer() {
-  const queryClient = useQueryClient();
-
   const [currentPage, setCurrentPage] = useState(1);
 
   const { isOpen } = useHotBoards();
   const { data } = useHotBoardList(currentPage, 5);
 
-  useEffect(() => {
-    const sseInstance = SSE.getInstance();
+  // useEffect(() => {
+  //   const sseInstance = SSE.getInstance();
 
-    const { eventSource } = sseInstance.getEventSource();
+  //   const { eventSource } = sseInstance.getEventSource();
 
-    eventSource.addEventListener('realtimeBoardTimeUp', () => {
-      queryClient.invalidateQueries({ queryKey: ['hotBoards'] });
-    });
-  }, []);
+  //   eventSource.addEventListener('realtimeBoardTimeUp', () => {
+  //     queryClient.invalidateQueries({ queryKey: ['hotBoards'] });
+  //   });
+  // }, []);
 
   if (!isOpen) return null;
 
@@ -47,11 +44,15 @@ export default function HotBoardsContainer() {
         ) : (
           <SkeletonList />
         )}
-        <HotBoardsFooter
-          setPage={setCurrentPage}
-          currentPage={currentPage}
-          totalPages={data?.totalPageCount ?? 1}
-        />
+        {data ? (
+          <HotBoardsFooter
+            setPage={setCurrentPage}
+            currentPage={currentPage}
+            totalPages={data.totalPageCount}
+          />
+        ) : (
+          <SkeletonFooter />
+        )}
       </div>
     </div>
   );

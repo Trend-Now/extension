@@ -1,5 +1,4 @@
 import React from 'react';
-import Info from '../icons/Info';
 import Pagination from '../pagination/Pagination';
 
 interface HotBoardsFooterProps {
@@ -15,10 +14,6 @@ export default function HotBoardsFooter({
 }: HotBoardsFooterProps) {
   return (
     <div className="hotboards-footer">
-      <span className="hotboards-footer__info-box">
-        <Info />
-        <span className="hotboards-footer__info-text">14시 30분 기준</span>
-      </span>
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}

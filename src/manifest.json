@@ -26,6 +26,9 @@
         "tn120.png",
         "tn32.png",
         "aiStar.gif",
+        "gold.png",
+        "silver.png",
+        "bronze.png",
         "PretendardVariable.woff2"
       ],
       "matches": ["<all_urls>"]

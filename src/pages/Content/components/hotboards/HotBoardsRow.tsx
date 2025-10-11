@@ -10,6 +10,7 @@ interface HotBoardsRowProps {
   postCount: number;
   viewCount: number;
   boardLiveTime: number;
+  rank: number;
 }
 
 export default function HotBoardsRow({
@@ -18,6 +19,7 @@ export default function HotBoardsRow({
   boardName,
   postCount,
   viewCount,
+  rank,
 }: HotBoardsRowProps) {
   const [aiSummaryVisible, setAiSummaryVisible] = useState(false);
 
@@ -30,6 +32,21 @@ export default function HotBoardsRow({
 
   return (
     <div className="hotboards-row">
+      {rank <= 3 ? (
+        <span className="hotboards-row__medal">
+          {rank === 1 && (
+            <img src={chrome.runtime.getURL('gold.png')} alt="1st" />
+          )}
+          {rank === 2 && (
+            <img src={chrome.runtime.getURL('silver.png')} alt="2nd" />
+          )}
+          {rank === 3 && (
+            <img src={chrome.runtime.getURL('bronze.png')} alt="3rd" />
+          )}
+        </span>
+      ) : (
+        <span className="hotboards-row__rank">{rank}</span>
+      )}
       <div className="hotboards-row__header">
         <span className="hotboards-row__title">{boardName}</span>
         {aiSummaryVisible && data ? (
