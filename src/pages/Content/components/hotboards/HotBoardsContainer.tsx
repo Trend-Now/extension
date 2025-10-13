@@ -14,17 +14,7 @@ export default function HotBoardsContainer() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const { isOpen } = useHotBoards();
-  const { data } = useHotBoardList(currentPage, 5);
-
-  // useEffect(() => {
-  //   const sseInstance = SSE.getInstance();
-
-  //   const { eventSource } = sseInstance.getEventSource();
-
-  //   eventSource.addEventListener('realtimeBoardTimeUp', () => {
-  //     queryClient.invalidateQueries({ queryKey: ['hotBoards'] });
-  //   });
-  // }, []);
+  const { data } = useHotBoardList(currentPage, 5, isOpen);
 
   if (!isOpen) return null;
 

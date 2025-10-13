@@ -1,7 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { HotBoardInfoResponse, HotBoardResponse } from '../types/hotBoards';
 
-export function useHotBoardList(page?: number, size?: number) {
+export function useHotBoardList(
+  page?: number,
+  size?: number,
+  enabled?: boolean
+) {
   return useQuery<HotBoardResponse>({
     queryKey: ['hotBoards', page, size],
     queryFn: () =>
@@ -14,6 +18,7 @@ export function useHotBoardList(page?: number, size?: number) {
           }
         );
       }),
+    enabled,
   });
 }
 
