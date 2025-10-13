@@ -17,7 +17,6 @@
       "css": ["content.styles.css"]
     }
   ],
-  "devtools_page": "devtools.html",
   "web_accessible_resources": [
     {
       "resources": [
