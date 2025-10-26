@@ -1,11 +1,11 @@
 {
-  "name": "chrome-extension-boilerplate-react",
-  "version": "5.0.4",
-  "description": "A chrome extension boilerplate built with React 18, Webpack 5, and Webpack Dev Server 4",
+  "name": "trendnow-extension",
+  "version": "5.0.5",
+  "description": "트렌드나우 크롬 확장 프로그램",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lxieyang/chrome-extension-boilerplate-react.git"
+    "url": "https://github.com/Trend-Now/extension.git"
   },
   "scripts": {
     "build": "node utils/build.js",
