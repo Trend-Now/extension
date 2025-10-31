@@ -10,11 +10,17 @@ const FloatingButton: React.FC = () => {
 
   const [isDragging, setIsDragging] = useState(false);
   const [startY, setStartY] = useState(0);
-  const [initialTop, setInitialTop] = useState(() => {
-    // 새로고침 후에도 유지되도록 localStorage에서 불러오기
-    const saved = localStorage.getItem('pos_y');
-    return saved ? parseInt(saved, 10) : 80; // 기본값 80
-  });
+  const [initialTop, setInitialTop] = useState<number>(0);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+
+  useEffect(() => {
+    chrome.storage.local.get('pos_y', ({ pos_y }) => {
+      setInitialTop(pos_y ? parseInt(pos_y, 10) : 80);
+    });
+    chrome.storage.local.get('showButton', ({ showButton }) => {
+      if (typeof showButton !== 'undefined') setIsVisible(Boolean(showButton));
+    });
+  }, []);
 
   useEffect(() => {
     const handleDragging = (e: MouseEvent) => {
@@ -32,7 +38,7 @@ const FloatingButton: React.FC = () => {
       const currentTop = boxRef.current.offsetTop;
       setInitialTop(currentTop);
 
-      localStorage.setItem('pos_y', currentTop.toString());
+      chrome.storage.local.set({ pos_y: currentTop.toString() });
     };
 
     document.addEventListener('mousemove', handleDragging);
@@ -59,6 +65,8 @@ const FloatingButton: React.FC = () => {
       setIsOpen?.(true);
     }
   };
+
+  if (!isVisible) return null;
 
   return (
     <div

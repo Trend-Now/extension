@@ -1,45 +1,73 @@
-.App {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  text-align: center;
-  height: 100%;
-  padding: 10px;
-  background-color: #282c34;
-}
-
-.App-logo {
-  height: 30vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  height: 100%;
+/* 
+ * MARK: PopupContainer
+ */
+/* #region */
+.popup-container {
+  width: 200px;
   display: flex;
   flex-direction: column;
+  row-gap: 8px;
+  padding: 16px;
+}
+/* #endregion */
+
+/* 
+ * MARK: ToggleOption
+ */
+/* #region */
+.toggle-option__container {
+  display: flex;
+  flex-direction: row-reverse;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  column-gap: 4px;
 }
 
-.App-link {
-  color: #61dafb;
+.toggle-option__text {
+  text-wrap: nowrap;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.toggle-option__button {
+  display: flex;
+  align-items: center;
+  appearance: none;
+  position: relative;
+  width: 40px;
+  height: 24px;
+  border-radius: 24px;
+  background-color: #c0c4c9;
+  cursor: pointer;
+  transition: background-color 100ms ease-in;
 }
+
+.toggle-option__button::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: white;
+  transition: left 100ms ease-in;
+}
+
+.toggle-option__button:checked::before {
+  left: 20px;
+}
+
+.toggle-option__button:checked {
+  background-color: #157eff;
+}
+
+.toggle-option__button:disabled {
+  background-color: #e4e8ed;
+  cursor: not-allowed;
+}
+
+.toggle-option__button:disabled + .toggle-option__text {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+/* #endregion */
