@@ -18,7 +18,7 @@ export default function ToggleOption({
         role="switch"
         id={text}
         className="toggle-option__button"
-        defaultChecked={enabled}
+        checked={enabled}
         onChange={(e) => onToggle(e.target.checked)}
         disabled={optionDisabled}
       />

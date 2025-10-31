@@ -39,7 +39,7 @@
   border-radius: 24px;
   background-color: #c0c4c9;
   cursor: pointer;
-  transition: background-color 100ms ease-in;
+  /* transition: background-color 100ms ease-in; */
 }
 
 .toggle-option__button::before {
@@ -50,7 +50,7 @@
   height: 16px;
   border-radius: 50%;
   background-color: white;
-  transition: left 100ms ease-in;
+  /* transition: left 100ms ease-in; */
 }
 
 .toggle-option__button:checked::before {
