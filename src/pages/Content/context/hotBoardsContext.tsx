@@ -25,7 +25,7 @@ export const useHotBoards = () => {
   const ctx = useContext(HotBoardsContext);
 
   if (!ctx)
-    throw new Error('useSettings must be used within HotBoardsProvider');
+    throw new Error('useHotBoards must be used within HotBoardsProvider');
 
   return ctx;
 };

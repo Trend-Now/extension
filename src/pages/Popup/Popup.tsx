@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react';
 import ToggleOption from './components/ToggleOption';
 import './Popup.css';
+import { ChromeLocalStorage } from '../shared/lib/chrome';
+import { sendShowButtonMessage } from './messages/settingsMessage';
 
 const Popup = () => {
   const [isShowButton, setIsShowButton] = useState<boolean>(true);
 
   useEffect(() => {
-    chrome.storage.local.get('showButton', ({ showButton }) => {
-      setIsShowButton(Boolean(showButton));
+    ChromeLocalStorage.get('showButton', true).then((res) => {
+      setIsShowButton(res);
     });
   }, []);
 
   const handleButtonDisplayToggle = (state: boolean) => {
     setIsShowButton(state);
-    chrome.storage.local.set({ showButton: state });
+    sendShowButtonMessage(state);
   };
 
   return (

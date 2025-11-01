@@ -1,4 +1,13 @@
 import axios from 'axios';
+import {
+  HotBoardInfoMessage,
+  HotBoardInfoMessageResponse,
+  HotBoardInfoResponse,
+  HotBoardListMessage,
+  HotBoardListMessageResponse,
+  HotBoardListResponse,
+} from '../shared/types/hotBoards';
+import { ChromeRuntime } from '../shared/lib/chrome';
 
 const axiosInstance = axios.create({
   baseURL: 'https://api.trendnow.me',
@@ -6,15 +15,15 @@ const axiosInstance = axios.create({
   timeout: 10000,
 });
 
-chrome.runtime.onMessage.addListener(
+ChromeRuntime.addListener<HotBoardListMessage, HotBoardListMessageResponse>(
   (
     message: { type: string; page?: number; size?: number },
-    sender,
+    _,
     sendResponse
   ) => {
     if (message.type === 'GET_HOTBOARD_LIST') {
       axiosInstance
-        .get('/api/v1/boards/list', {
+        .get<HotBoardListResponse>('/api/v1/boards/list', {
           params: { page: message.page, size: message.size },
         })
         .then((res) => sendResponse({ success: true, data: res.data }))
@@ -25,11 +34,11 @@ chrome.runtime.onMessage.addListener(
   }
 );
 
-chrome.runtime.onMessage.addListener(
-  (message: { type: string; boardId: number }, sender, sendResponse) => {
+ChromeRuntime.addListener<HotBoardInfoMessage, HotBoardInfoMessageResponse>(
+  (message, _, sendResponse) => {
     if (message.type === 'GET_HOTBOARD_INFO') {
       axiosInstance
-        .get('/api/v1/boards/realtime', {
+        .get<HotBoardInfoResponse>('/api/v1/boards/realtime', {
           params: { boardId: message.boardId },
         })
         .then((res) => sendResponse({ success: true, data: res.data }))

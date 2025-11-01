@@ -1,7 +1,7 @@
 import React from 'react';
 import FloatingButton from './button/Floatingbutton';
 import HotBoardsContainer from './hotboards/HotBoardsContainer';
-import { HotBoardsProvider } from './context';
+import { HotBoardsProvider } from '../context/hotBoardsContext';
 import QueryProvider from '../../shared/query-provider';
 
 export default function Root() {

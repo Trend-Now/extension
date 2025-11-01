@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import TN24White from '../icons/TN24White';
 import Trendnow20White from '../icons/Trendnow20White';
-import { useHotBoards } from '../context';
+import { useHotBoards } from '../../context/hotBoardsContext';
 import CloseButton from '../button/CloseButton';
 import DateDivider from '../divider/DateDivider';
 import HotBoardsList from './HotBoardsList';

@@ -1,4 +1,31 @@
-export interface HotBoardResponse {
+import { HotBoardKey } from '../const/hotboard';
+
+interface MessageError {
+  error?: string;
+}
+
+export interface HotBoardListMessage {
+  type: keyof HotBoardKey;
+  page?: number;
+  size?: number;
+}
+
+export interface HotBoardListMessageResponse extends MessageError {
+  success: boolean;
+  data?: HotBoardListResponse;
+}
+
+export interface HotBoardInfoMessage {
+  type: keyof HotBoardKey;
+  boardId: number;
+}
+
+export interface HotBoardInfoMessageResponse extends MessageError {
+  success: boolean;
+  data?: HotBoardInfoResponse;
+}
+
+export interface HotBoardListResponse {
   totalPageCount: number;
   totalBoardCount: number;
   boardInfoDtos: HotBoardList[];

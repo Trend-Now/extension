@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useHotBoards } from '../context';
+import { useHotBoards } from '../../context/hotBoardsContext';
 import TN24White from '../icons/TN24White';
+import { ChromeLocalStorage, ChromeRuntime } from '../../../shared/lib/chrome';
+import {
+  SettingsBooleanMessage,
+  SettingsMessageResponse,
+} from '../../../shared/types/settings';
 
 const FloatingButton: React.FC = () => {
   const { setIsOpen } = useHotBoards();
@@ -11,15 +16,25 @@ const FloatingButton: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startY, setStartY] = useState(0);
   const [initialTop, setInitialTop] = useState<number>(0);
-  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [buttonVisible, setButtonVisible] = useState<boolean>(true);
 
   useEffect(() => {
-    chrome.storage.local.get('pos_y', ({ pos_y }) => {
-      setInitialTop(pos_y ? parseInt(pos_y, 10) : 80);
+    ChromeLocalStorage.get('pos_y', 80).then((res) => {
+      setInitialTop(res ? res : 80);
     });
-    chrome.storage.local.get('showButton', ({ showButton }) => {
-      if (typeof showButton !== 'undefined') setIsVisible(Boolean(showButton));
+
+    ChromeLocalStorage.get('showButton', true).then((res) => {
+      setButtonVisible(res);
     });
+
+    ChromeRuntime.addListener<SettingsBooleanMessage, SettingsMessageResponse>(
+      (message, _, sendResponse) => {
+        if (message.option === 'showButton') {
+          setButtonVisible(message.data);
+          sendResponse({ success: true });
+        }
+      }
+    );
   }, []);
 
   useEffect(() => {
@@ -38,7 +53,7 @@ const FloatingButton: React.FC = () => {
       const currentTop = boxRef.current.offsetTop;
       setInitialTop(currentTop);
 
-      chrome.storage.local.set({ pos_y: currentTop.toString() });
+      ChromeLocalStorage.set('pos_y', currentTop);
     };
 
     document.addEventListener('mousemove', handleDragging);
@@ -66,7 +81,7 @@ const FloatingButton: React.FC = () => {
     }
   };
 
-  if (!isVisible) return null;
+  if (!buttonVisible) return null;
 
   return (
     <div

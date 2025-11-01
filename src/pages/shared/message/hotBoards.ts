@@ -1,22 +1,30 @@
 import { useQuery } from '@tanstack/react-query';
-import { HotBoardInfoResponse, HotBoardResponse } from '../types/hotBoards';
+import {
+  HotBoardInfoResponse,
+  HotBoardInfoMessage,
+  HotBoardInfoMessageResponse,
+  HotBoardListResponse,
+  HotBoardListMessage,
+  HotBoardListMessageResponse,
+} from '../types/hotBoards';
+import { ChromeRuntime } from '../lib/chrome';
 
 export function useHotBoardList(
   page?: number,
   size?: number,
   enabled?: boolean
 ) {
-  return useQuery<HotBoardResponse>({
+  return useQuery<HotBoardListResponse>({
     queryKey: ['hotBoards', page, size],
     queryFn: () =>
       new Promise((resolve, reject) => {
-        chrome.runtime.sendMessage(
-          { type: 'GET_HOTBOARD_LIST', page, size },
-          (response) => {
-            if (response.success) resolve(response.data);
-            else reject(new Error(response.error));
-          }
-        );
+        ChromeRuntime.sendMessage<
+          HotBoardListMessage,
+          HotBoardListMessageResponse
+        >({ type: 'GET_HOTBOARD_LIST', page, size }, (response) => {
+          if (response.success && response.data) resolve(response.data);
+          else reject(new Error(response.error));
+        });
       }),
     enabled,
   });
@@ -30,13 +38,13 @@ export function useHotBoardInfo(
     queryKey: ['hotBoardInfo', boardId],
     queryFn: () =>
       new Promise((resolve, reject) => {
-        chrome.runtime.sendMessage(
-          { type: 'GET_HOTBOARD_INFO', boardId },
-          (response) => {
-            if (response.success) resolve(response.data);
-            else reject(new Error(response.error));
-          }
-        );
+        ChromeRuntime.sendMessage<
+          HotBoardInfoMessage,
+          HotBoardInfoMessageResponse
+        >({ type: 'GET_HOTBOARD_INFO', boardId }, (response) => {
+          if (response.success && response.data) resolve(response.data);
+          else reject(new Error(response.error));
+        });
       }),
     enabled: config?.enabled ?? true,
   });
